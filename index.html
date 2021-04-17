@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>under construction</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="styles/index.css" type="text/css"/>
+        <link rel="icon" href="assets/favicon_index.ico"/>
+        
+        <script>
+            function clipboard_copy(text) {
+                navigator.clipboard.writeText(text).then(function() {alert("Copied user ID to clipboard.");}, function(err) {alert("Could not copy text cause: ", err);});
+            }
+        </script>
+    </head>
+    
+    
+    <body>
+        <h1>vlcoo.github.io</h1>
+        <h2>beautiful</h2>
+        <div class="block">
+            <h3><img class="icon_header" src="assets/icon_warning.png"></img>Warning</h3>
+            <p>Under construction</p>
+        </div>
+        
+        <br>
+        
+        <div class="block">
+            <h3>What's this?</h3>
+            <p>It's just a website in which I'll host random projects of mine. Hosted by GitHub Pages and written by me from scratch. Still working on it.</p>
+        </div>
+        
+        <br>
+        
+        <div class="block">
+            <h3>more</h3>
+            <button title="@vlco_o" onclick="location.href='https://twitter.com/vlco_o';"><img class="icon" src="assets/icon_twitter.png"></img>Twitter</button>
+            <button title="@VlC#2929" onclick="clipboard_copy('@VlC#2929')"><img class="icon" src="assets/icon_discord.png"></img>Discord</button>
+            <p></p>
+        </div>
+    </body>
+</html>
