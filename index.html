@@ -1,13 +1,14 @@
 <html>
     <head>
-        <title>under construction</title>
+        <title>vlco_o main_page</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="styles/index.css" type="text/css"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="icon" href="assets/favicon_index.ico"/>
         
         <script>
-            function clipboard_copy(text) {
-                navigator.clipboard.writeText(text).then(function() {alert("Copied user ID to clipboard.");}, function(err) {alert("Could not copy text cause: ", err);});
+            function clipboard_copy(text, msg) {
+                navigator.clipboard.writeText(text).then(function() {alert("Copied " + msg + " to clipboard.");}, function(err) {alert("Could not copy text cause: ", err);});
             }
         </script>
     </head>
@@ -15,25 +16,39 @@
     
     <body>
         <h1>vlcoo.github.io</h1>
-        <h2>beautiful</h2>
+        <h2>! under construction !</h2>
         <div class="block">
-            <h3><img class="icon_header" src="assets/icon_warning.png"></img>Warning</h3>
-            <p>Under construction</p>
-        </div>
-        
-        <br>
-        
-        <div class="block">
+            <img class="block_bg" src="assets/icon_help.png"></img>
             <h3>What's this?</h3>
-            <p>It's just a website in which I'll host random projects of mine. Hosted by GitHub Pages and written by me from scratch. Still working on it.</p>
+            <p>Programming is kind of what I like to do. So I started the adventure of writing this whole page by scratch (cause why not) with the objective of hosting or promoting here some of my coding projects.</p>
+            <p>This website is still a work in progress...</p>
         </div>
         
         <br>
         
         <div class="block">
-            <h3>more</h3>
-            <button title="@vlco_o" onclick="location.href='https://twitter.com/vlco_o';"><img class="icon" src="assets/icon_twitter.png"></img>Twitter</button>
-            <button title="@VlC#2929" onclick="clipboard_copy('@VlC#2929')"><img class="icon" src="assets/icon_discord.png"></img>Discord</button>
+            <img class="block_bg" src="assets/icon_code.png"></img>
+            <h3>Coding things</h3>
+            <p>Almost all of them are coded in Python - maybe I'm obsessed with this language.</p>
+            <p>[Not yet added]</p>
+        </div>
+        
+        <br>
+        
+        <div class="block">
+            <img class="block_bg" src="assets/icon_gamepad.png"></img>
+            <h3>Game dev</h3>
+            <p>Godot is my engine of choice for game development. Pretty neat!</p>
+            <p>[Not yet added]</p>
+        </div>
+        
+        <br>
+        
+        <div class="block">
+            <h3>More</h3>
+            <p>I'm also roaming around these parts from time to time:</p>
+            <button title="@VlCo_o" onclick="location.href='https://twitter.com/VlCo_o';"><img class="icon" src="assets/icon_twitter.png">Twitter</button>
+            <button title="VlC#2929" onclick="clipboard_copy('VlC#2929', 'user ID');"><img class="icon" src="assets/icon_discord.png">Discord</button>
             <p></p>
         </div>
     </body>
