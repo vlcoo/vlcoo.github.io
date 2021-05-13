@@ -2,6 +2,7 @@
     <head>
         <title>vlco_o main_page</title>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="styles/index.css" type="text/css"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="icon" href="assets/favicon_index.ico"/>
@@ -16,12 +17,15 @@
     
     <body>
         <h1>vlcoo.github.io</h1>
-        <h2>! under construction !</h2>
+        
+        <br>
+        
         <div class="block">
             <img class="block_bg" src="assets/icon_help.png"></img>
             <h3>What's this?</h3>
-            <p>Programming is kind of what I like to do. So I started the adventure of writing this whole page by scratch (cause why not) with the objective of hosting or promoting here some of my coding projects.</p>
-            <p>This website is still a work in progress...</p>
+            <p>It's just a little page with random coding projects, games, and other.</p>
+            <p>Programming is kind of what I like to do. So I started the adventure of writing this whole page by scratch (cause why not) with the objective of hosting or promoting here some of my projects.</p>
+            <p>This is still a work in progress...</p>
         </div>
         
         <br>
@@ -30,7 +34,10 @@
             <img class="block_bg" src="assets/icon_code.png"></img>
             <h3>Coding things</h3>
             <p>Almost all of them are coded in Python - maybe I'm obsessed with this language.</p>
-            <p>[Not yet added]</p>
+            <button title="Text to Discord emote" onclick="location.href = 'scripts/ttd.html';" class="button_project" style="background-image: url(assets/proj_ttd.png);"></button>
+            <button disabled title="Coming soon" onclick="location.href = 'scripts/gtm.html';" class="button_project" style="background-image: url(assets/proj_gtm.png);"></button>
+            <button disabled title="Coming soon" onclick="location.href = 'scripts/gol.html';" class="button_project" style="background-image: url(assets/proj_gol.png);"></button>
+            <p></p>
         </div>
         
         <br>
@@ -39,7 +46,17 @@
             <img class="block_bg" src="assets/icon_gamepad.png"></img>
             <h3>Game dev</h3>
             <p>Godot is my engine of choice for game development. Pretty neat!</p>
-            <p>[Not yet added]</p>
+            <button disabled title="Coming soon" onclick="location.href = 'screwchips.html';" class="button_project" style="background-image: url(assets/proj_screwchips.png);"></button>
+            <p></p>
+        </div>
+        
+        <br>
+        
+        <div class="block">
+            <img class="block_bg" src="assets/icon_note.png"></img>
+            <h3>FamiTracker covers</h3>
+            <p>I don't know about music theory, but I made some "8-bit" covers of some game songs in the past. May sound a bit bad, but oh well...</p>
+            <p>[Coming soon]</p>
         </div>
         
         <br>
@@ -47,8 +64,13 @@
         <div class="block">
             <h3>More</h3>
             <p>I'm also roaming around these parts from time to time:</p>
-            <button title="@VlCo_o" onclick="location.href='https://twitter.com/VlCo_o';"><img class="icon" src="assets/icon_twitter.png">Twitter</button>
-            <button title="VlC#2929" onclick="clipboard_copy('VlC#2929', 'user ID');"><img class="icon" src="assets/icon_discord.png">Discord</button>
+            <button title="@VlCo_o" onclick="window.open('https://twitter.com/VlCo_o', '_blank');"><img class="icon" src="assets/icon_twitter.png"></button>
+            &nbsp;
+            <button title="VlC#2929" onclick="clipboard_copy('VlC#2929', 'user ID');"><img class="icon" src="assets/icon_discord.png"></button>
+            &nbsp;
+            <button title="@VlC" onclick="window.open('https://aminoapps.com/p/4rut5b', '_blank');"><img class="icon" src="assets/icon_amino.png"></button>
+            &nbsp;
+            <button disabled title="Coming soon" onclick="alert('Not available');"><img class="icon" src="assets/icon_youtube.png"></button>
             <p></p>
         </div>
     </body>
