@@ -1,11 +1,11 @@
 <html>
     <head>
-        <title>vlco_o project_explorer</title>
+        <title>vlco_o text_to_emote</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../styles/index.css" type="text/css"/>
+        <link rel="stylesheet" href="/styles/index.css" type="text/css"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="icon" href="assets/favicon_index.ico"/>
+        <link rel="icon" href="/assets/favicon_index.ico"/>
         
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.9.0/brython.min.js">
         </script>
@@ -16,46 +16,7 @@
             }
         </script>
         
-        <script type="text/python">
-            from browser import alert, document
-            
-            def project(ev):
-                num = {
-                "0": ":zero: ",
-                "1": ":one: ",
-                "2": ":two: ",
-                "3": ":three: ",
-                "4": ":four: ",
-                "5": ":five: ",
-                "6": ":six: ",
-                "7": ":seven: ",
-                "8": ":eight: ",
-                "9": ":nine: ",
-                }
-                disallowed = [",", "-", "_", ".", ":", "'", "!", "\"", "?", "+", "*", "/", "<", ">"]
-                txt = document["form_python_input"].value
-                print("-"*10)
-                new = ""
-                for char in txt.lower():
-                    if char in disallowed:
-                        continue
-                    if char == " ":
-                        new += ":black_large_square: "
-                    elif char in num:
-                        new += num[char]
-                    else:
-                        new += ":regional_indicator_" + char + ": "
-                document["form_python_output"].value = new
-                
-            def overwrite(ev):
-                document["form_python_output"].value = "ok then"
-            
-            def press(ev):
-                alert("harder")
-            
-            document["form_python_btn"].bind("click", project)
-            document["press_me"].bind("click", press)
-        </script>
+        <script type="text/python" src="ttd.py"></script>
     </head>
     
     
@@ -64,16 +25,43 @@
         <h2>Text to Discord emote</h2>
         <div class="block">
             <p>Input below the text you want to convert to <img style="height: 1em;" src="../assets/ttd_example.png">, then copy the output and paste it into your Discord message!</p>
-            <input style="width: 90%;" type="text" id="form_python_input" placeholder="Text"></input>
+            <input style="width: 85%;" type="text" id="form_python_input" placeholder="Text"></input>
             <button title="Do it" style="vertical-align: top;" id="form_python_btn"><img class="icon" src="../assets/icon_play.png"></button>
             <p></p>
-            <textarea readonly style="display: inline-block; width: 90%; height: 128px;" id="form_python_output" placeholder="Output"></textarea>
+            <textarea readonly style="display: inline-block; width: 85%; height: 128px;" id="form_python_output" placeholder="Output"></textarea>
             <div style="display: inline-block; width: 9%; height: 128px; vertical-align: top;">
                 <button title="Copy output" onclick="clipboard_copy(document.getElementById('form_python_output').value, 'text')"><img class="icon" src="../assets/icon_copy.png"></button>
                 <p></p>
                 <button title="Clear" onclick="document.getElementById('form_python_output').value = ''"><img class="icon" src="../assets/icon_clear.png"></button>
             </div>
-            <p>More settings coming soon.</p>
+            <p></p>
+        </div>
+        
+        <br>
+        
+        <div class="block">
+            <img class="block_bg" src="/assets/icon_config.png"></img>
+            <h3>Other options</h3>
+            <input type="checkbox" id="options_python_aalt"></input>
+            <label for="options_python_aalt">Replace <img style="height: 1em;" src="../assets/ttd_aaltblue.png"> with <img style="height: 1em;" src="../assets/ttd_aaltred.png"></label>
+            <br>
+            <input type="checkbox" id="options_python_balt"></input>
+            <label for="options_python_balt">Replace <img style="height: 1em;" src="../assets/ttd_baltblue.png"> with <img style="height: 1em;" src="../assets/ttd_baltred.png"></label>
+            <p></p>
+            <label for="options_python_space">Replace spaces with </label>
+            <select id="options_python_space">
+                <p>Replace spaces with </p>
+                <option value="emote">Black square emote</option>
+                <option value="text">Keep as is</option>
+                <option value="ignore">Remove them</option>
+            </select>
+            <br>
+            <label for="options_python_symbols">Replace symbols with </label>
+            <select id="options_python_symbols">
+                <option value="ignore">Remove them</option>
+                <option value="keep">Keep as is</option>
+            </select>
+            <p></p>
         </div>
         
         <br>

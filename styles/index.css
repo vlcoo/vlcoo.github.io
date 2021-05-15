@@ -36,7 +36,7 @@ h3 {
 /*     font-family: 'Josefin Sans'; */
 }
 
-p {
+p, label {
     color: white;
 /*     font-family: "Roboto Condensed"; */
 }
@@ -128,4 +128,9 @@ input, textarea {
 
 textarea {
     font-family: monospace;
+}
+
+select {
+    height: 1em;
+    font-size: 12px;
 }
