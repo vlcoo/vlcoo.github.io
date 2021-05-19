@@ -1,15 +1,26 @@
 <html>
     <head>
         <title>vlco_o main_page</title>
+        
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
         <link rel="stylesheet" href="styles/index.css" type="text/css"/>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="icon" href="assets/favicon_index.ico"/>
+        
+        <script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101317748);</script>
+        <script async src="//static.getclicky.com/js"></script>
         
         <script>
             function clipboard_copy(text, msg) {
-                navigator.clipboard.writeText(text).then(function() {alert("Copied " + msg + " to clipboard.");}, function(err) {alert("Could not copy text cause: ", err);});
+                navigator.clipboard.writeText(text).then(
+                    function() {
+                        alert("Copied " + msg + " to clipboard.");
+                    },
+                    function(err) {
+                    alert("Could not copy text cause: ", err);
+                    }
+                );
             }
         </script>
     </head>
@@ -35,7 +46,7 @@
             <h3>Coding things</h3>
             <p>Almost all of them are coded in Python - maybe I'm obsessed with this language.</p>
             <button title="Text to Discord emote" onclick="location.href = 'scripts/ttd.html';" class="button_project" style="background-image: url(assets/proj_ttd.png);"></button>
-            <button disabled title="Coming soon" onclick="location.href = 'scripts/gtm.html';" class="button_project" style="background-image: url(assets/proj_gtm.png);"></button>
+            <button title="Translate mixer" onclick="location.href = 'scripts/gtm.html';" class="button_project" style="background-image: url(assets/proj_gtm.png);"></button>
             <button disabled title="Coming soon" onclick="location.href = 'scripts/gol.html';" class="button_project" style="background-image: url(assets/proj_gol.png);"></button>
             <p></p>
         </div>
@@ -73,5 +84,7 @@
             <button disabled title="Coming soon" onclick="alert('Not available');"><img class="icon" src="assets/icon_youtube.png"></button>
             <p></p>
         </div>
+        
+        <br>
     </body>
 </html>
