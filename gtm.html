@@ -7,6 +7,9 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="icon" href="/assets/favicon_index.ico"/>
         
+        <script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101317748);</script>
+        <script async src="//static.getclicky.com/js"></script>
+        
         <script>
             function clipboard_copy(text, msg) {
                 navigator.clipboard.writeText(text).then(function() {alert("Copied " + msg + " to clipboard.");}, function(err) {alert("Could not copy text cause: ", err);});
@@ -14,6 +17,7 @@
             function req() {
                 var text = document.getElementById("form_python_input").value
                 var reps = document.getElementById("options_python_reps").value
+                var lang = document.getElementById("options_python_lang").value
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
@@ -23,13 +27,33 @@
                 document.getElementById("form_python_output").value = "Wait...!"
                 xhttp.open("POST", "https://vlcoo.pythonanywhere.com/gtm", true);
                 xhttp.setRequestHeader('Content-Type', 'application/json');
-                xhttp.send("{\"text\": \"" + text + "\", \"reps\":" + reps + "}");
+                xhttp.send("{\"text\": \"" + text + "\", \"reps\":" + reps + ", \"lang\":\"" + lang + "\"}");
+            }
+            function load_lang() {
+                var select = document.getElementById("options_python_lang"); 
+                var result = null;
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", "langcodes", false);
+                xmlhttp.send();
+                if (xmlhttp.status==200) {
+                    text = xmlhttp.responseText;
+                }
+                var options = text.split("\n")[0].split(" ")
+                var options_pretty = text.split("\n")[1].split(" ")
+                for(var i = 0; i < options.length; i++) {
+                    var opt = options[i];
+                    var el = document.createElement("option");
+                    el.value = opt;
+                    el.textContent = options_pretty[i];
+                    select.appendChild(el);
+                }
+                select.value = "en"
             }
         </script>
     </head>
     
     
-    <body> 
+    <body onload="load_lang()"> 
         <h1>vlcoo.github.io</h1>
         <h2>Google Translate mixer</h2>
         <div class="block">
@@ -54,7 +78,12 @@
             <h3>Other options</h3>
             <label for="options_python_reps">No. of languages to go through </label>
             <input style="width: 10%;" type="text" id="options_python_reps" value="5" placeholder="Reps"></input>
-            <p>Note: More languages and settings coming soon.</p>
+            <p></p> 
+            <label for="options_python_reps">Language of source text </label>
+            <select id="options_python_lang">
+            </select>
+            <p>(Languages with non-latin characters may give problems)</p>
+            <p></p>
         </div>
         
         <br>
