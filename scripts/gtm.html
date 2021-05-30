@@ -38,12 +38,13 @@
                 if (xmlhttp.status==200) {
                     text = xmlhttp.responseText;
                 }
-                var options = text.split(" ")
+                var options = text.split("\n")[0].split(" ")
+                var options_pretty = text.split("\n")[1].split(" ")
                 for(var i = 0; i < options.length; i++) {
                     var opt = options[i];
                     var el = document.createElement("option");
-                    el.textContent = opt;
                     el.value = opt;
+                    el.textContent = options_pretty[i];
                     select.appendChild(el);
                 }
                 select.value = "en"
@@ -57,7 +58,7 @@
         <h2>Google Translate mixer</h2>
         <div class="block">
             <p>This tool allows you to translate a text to a language, then to another, then to another... and finally back to the source language, often obtaining nonsensical and funny results. All automatically!</p>
-            <p>Input the source text below. (English only)</p>
+            <p>Input the source text below.</p>
             <textarea style="width: 85%;" type="text" id="form_python_input" placeholder="Text"></textarea>
             <button title="Do it" onclick="req()" style="vertical-align: top;" id="form_python_btn"><img class="icon" src="../assets/icon_play.png"></button>
             <p></p>
@@ -81,6 +82,7 @@
             <label for="options_python_reps">Language of source text </label>
             <select id="options_python_lang">
             </select>
+            <p>(Languages with non-latin characters may give problems)</p>
             <p></p>
         </div>
         
