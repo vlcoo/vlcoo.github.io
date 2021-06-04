@@ -7,7 +7,7 @@ html {
 }
 
 body {
-    background-color: #121212;
+    background-color: #f2f7f6;
 }
 
 /*h1, h2, h3, h4, h5, h6{
@@ -21,29 +21,33 @@ h1 {
     text-align: center;
     color: #0000;
 /*     font-family: "Roboto Condensed"; */
-    -webkit-text-stroke: 1.5px #77aaff;
+    -webkit-text-stroke: 2px #022e64;
 }
 
 h2 {
     margin-top: 0px;
     text-align: center;
-    color: white;
+    color: black;
 /*     font-family: "Roboto Condensed"; */
 }
 
 h3 {
-    color: #77aaff;
+    color: #022e64;
 /*     font-family: 'Josefin Sans'; */
 }
 
 p, label {
-    color: white;
+    color: black;
 /*     font-family: "Roboto Condensed"; */
+}
+
+a {
+    color: #022e64;
 }
 
 div.block {
 /*     width: 95%; */
-    background-color: #2c2727;
+    background-color: #dc965a;
     padding-top: 0.2px;
     padding-right: 20px;
     padding-bottom: 5px;
@@ -69,7 +73,7 @@ img.block_bg {
     position: absolute;
     top: -28px;
     right: -24px;
-    opacity: .2;
+    opacity: .3;
     width: 128px;
     height: 128px;
     transform: rotate(30deg);
@@ -77,19 +81,21 @@ img.block_bg {
 
 button {
     background-color: black;
-    color: #e0e0e0;
+    border-color: #ed254e;
     padding: 5px;
     border-radius: 5px;
+/*     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4), 0 1.5px 5px 0 rgba(0, 0, 0, 0.4); */
     transition-duration: 0.2s;
 }
 
 button:hover {
-    border-color: #b10000;
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.4), 0 4px 12px 0 rgba(0, 0, 0, 0.4);
     transition-duration: 0.2s;
 }
 
 button:disabled {
     filter: brightness(40%);
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);
     border-color: grey;
 }
 
@@ -121,7 +127,8 @@ img.icon_header {
 
 input, textarea {
     background-color: black;
-    color: #e0e0e0;
+    border-color: #ed254e;
+/*     color: black; */
     padding: 5px;
     border-radius: 5px;
 }
@@ -131,6 +138,6 @@ textarea {
 }
 
 select {
-    height: 1em;
+    height: 2em;
     font-size: 12px;
 }
