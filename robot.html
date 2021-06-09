@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>vlco_o boop.</title>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="styles/index.css" type="text/css"/>
+        <link rel="icon" href="assets/favicon_index.ico"/>
+        
+        <script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101317748);</script>
+        <script async src="//static.getclicky.com/js"></script>
+        
+        <script>
+            function clipboard_copy(text, msg) {
+                navigator.clipboard.writeText(text).then(
+                    function() {
+                        alert("Copied " + msg + " to clipboard.");
+                    },
+                    function(err) {
+                    alert("Could not copy text cause: ", err);
+                    }
+                );
+            }
+            
+            async function verify() {
+                document.getElementById("icon_loading").style.display = "";
+                await new Promise(r => setTimeout(r, (Math.random() * 2000) + 1000));
+                document.getElementById("icon_loading").style.display = "none";
+                alert("Could not verify that user is non-human.");
+                alert("Please go back immediately.");
+                location.href = "https://vlcoo.github.io";
+            }
+        </script>
+    </head>
+    
+    
+    <body>
+        <h1>vlcoo.github.io</h1>
+        <h2><a href="/" >Home</a> | Beep boop.</h2>
+        
+        <br>
+        
+        <div class="block">
+            <img style="display: none;" id="icon_loading" class="block_bg" src="assets/anim_loading.gif"></img>
+            <h3>Boop beep?</h3>
+            <label for="not_human">Please verify before continuing: </label>
+            <button id="not_human" onclick="verify()">I'm not a human</button>
+            <p></p>
+        </div>
