@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>vlco_o troll spoiler generator</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../styles/index.css" type="text/css"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="icon" href="/assets/favicon_index.ico"/>
+        
+        <script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101317748);</script>
+        <script async src="//static.getclicky.com/js"></script>
+        
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.9.0/brython.min.js"></script>
+        </script>
+        
+        <script>
+            function clipboard_copy(text, msg) {
+                navigator.clipboard.writeText(text).then(function() {alert("Copied " + msg + " to clipboard.");}, function(err) {alert("Could not copy text cause: ", err);});
+            }
+        </script>
+        
+        <script type="text/python" src="tsg.py"></script>
+    </head>
+    
+    
+    <body onload="brython()"> 
+        <h1>vlcoo.github.io</h1>
+        <h2><a href="/" >Home</a> | Troll spoiler generator</h2>
+        
+        <div class="block">
+            <p>The text you input below will get each one of its characters ||spoilered|| individually. After running it, copy and paste the output in your Discord message!</p>
+            <input style="width: 85%;" type="text" id="form_python_input" placeholder="Text"></input>
+            <button title="Do it" style="vertical-align: top;" id="form_python_btn"><img class="icon" src="../assets/icon_play.png"></button>
+            <p></p>
+            <textarea readonly style="display: inline-block; width: 85%; height: 128px;" id="form_python_output" placeholder="Output"></textarea>
+            <div style="display: inline-block; width: 9%; height: 128px; vertical-align: top;">
+                <button title="Copy output" onclick="clipboard_copy(document.getElementById('form_python_output').value, 'text')"><img class="icon" src="../assets/icon_copy.png"></button>
+                <p></p>
+                <button title="Clear" onclick="document.getElementById('form_python_output').value = ''"><img class="icon" src="../assets/icon_clear.png"></button>
+            </div>
+            <p></p>
+        </div>
+        
+<!--         <button title="Homepage" onclick="location.href = 'https://vlcoo.github.io';"><img class="icon" src="../assets/icon_home.png"></button> -->
+    </body>
+</html>
