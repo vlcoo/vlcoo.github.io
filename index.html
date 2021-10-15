@@ -22,26 +22,36 @@
                     }
                 );
             }
+
+            function check_social_only() {
+                var h = location.hash
+                if(h == "#social") {
+                    document.getElementById("welcome").hidden = true;
+                    document.getElementById("scripts").hidden = true;
+                    document.getElementById("gamedev").hidden = true;
+                    document.getElementById("gohome").hidden = false;
+                }
+            }
         </script>
     </head>
     
     
-    <body>
+    <body onload="check_social_only()">
         <h1>vlcoo.github.io</h1>
+        <h2 hidden id="gohome"><a href="/" >Home</a></h2>
         
         <br>
         
-        <div class="block">
+        <div class="block" id="welcome">
             <img class="block_bg" src="assets/icon_help.png"></img>
             <h3>What's this?</h3>
             <p>It's just a little page with random coding projects, games, and other.</p>
             <p>Programming is kind of what I like to do. So I started the adventure of writing this whole page by scratch (cause why not) with the objective of hosting or promoting here some of my projects.</p>
-            <p>I'm still thinking about the colors.</p>
         </div>
         
         <br>
         
-        <div class="block">
+        <div class="block" id="scripts">
             <img class="block_bg" src="assets/icon_code.png"></img>
             <h3>Coding things</h3>
             <p>Almost all of them are coded in Python - maybe I'm obsessed with this language.</p>
@@ -51,28 +61,24 @@
             &nbsp;
             <button title="Translate mixer" onclick="location.href = 'scripts/gtm.html';" class="button_project" style="background-image: url(assets/proj_gtm.png);"></button>
             &nbsp;
-            <button disabled title="Development on hold" class="button_project" style="background-image: url(assets/proj_pch.png);"></button>
-            &nbsp;
             <button title="Command line Game of Life" onclick="window.open('https://github.com/vlcoo/commandline-game-of-life', '_blank');" class="button_project" style="background-image: url(assets/proj_gol.png);"></button>
             <p></p>
         </div>
         
         <br>
         
-        <div class="block">
+        <div class="block" id="gamedev">
             <img class="block_bg" src="assets/icon_gamepad.png"></img>
             <h3>Game dev</h3>
             <p><a href="https://godotengine.org">Godot</a> is my engine of choice for game development. Pretty neat!</p>
             <button title="TailTrail" onclick="window.open('https://vlco-o.itch.io/tailtrail', '_blank');" class="button_project" style="background-image: url(assets/proj_tailtrail.png);"></button>
-            <button disabled title="Development on hold" onclick="location.href = 'screwchips.html';" class="button_project" style="background-image: url(assets/proj_screwchips.png);"></button>
-            <button title="1D Tetris" onclick="window.open('https://vlco-o.itch.io/onecolumntetris', '_blank');" class="button_project" style="background-image: url(assets/proj_1dt.png);"></button>
             <p></p>
         </div>
         
         <br>
         
-        <div class="block">
-            <h3>More</h3>
+        <div class="block" id="social">
+            <h3>Links</h3>
             <p>I'm also roaming around these parts from time to time:</p>
             <button title="Twitter" onclick="window.open('https://twitter.com/VlCo_o', '_blank');"><img class="icon" src="assets/icon_twitter.png"></button>
             &nbsp;
