@@ -8,9 +8,6 @@
         <link rel="stylesheet" href="styles/index.css" type="text/css"/>
         <link rel="icon" href="assets/favicon_index.ico"/>
         
-        <script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101317748);</script>
-        <script async src="//static.getclicky.com/js"></script>
-        
         <script>
             function clipboard_copy(text, msg) {
                 navigator.clipboard.writeText(text).then(
@@ -28,7 +25,7 @@
                 if(h == "#social") {
                     document.getElementById("welcome").hidden = true;
                     document.getElementById("scripts").hidden = true;
-                    document.getElementById("gamedev").hidden = true;
+                    document.getElementById("programs").hidden = true;
                     document.getElementById("gohome").hidden = false;
                 }
             }
@@ -52,27 +49,29 @@
         <br>
         
         <div class="block" id="scripts">
-            <img class="block_bg" src="assets/icon_code.png"></img>
-            <h3>Coding things</h3>
+            <img class="block_bg" src="assets/icon_gamepad.png"></img>
+            <h3>Interactive tools</h3>
             <p>Almost all of them are coded in Python - maybe I'm obsessed with this language.</p>
             <button title="Text to Discord emote" onclick="location.href = 'scripts/ttd.html';" class="button_project" style="background-image: url(assets/proj_ttd.png);"></button>
             &nbsp;
             <button title="Troll spoiler generator" onclick="location.href = 'scripts/tsg.html';" class="button_project" style="background-image: url(assets/proj_tsg.png);"></button>
             &nbsp;
             <button title="Translate mixer" onclick="location.href = 'scripts/gtm.html';" class="button_project" style="background-image: url(assets/proj_gtm.png);"></button>
-            &nbsp;
-            <button title="Command line Game of Life" onclick="window.open('https://github.com/vlcoo/commandline-game-of-life', '_blank');" class="button_project" style="background-image: url(assets/proj_gol.png);"></button>
             <p></p>
         </div>
         
         <br>
         
-        <div class="block" id="gamedev">
-            <img class="block_bg" src="assets/icon_gamepad.png"></img>
-            <h3>Game dev</h3>
-            <p><a href="https://godotengine.org">Godot</a> is my engine of choice for game development. Pretty neat!</p>
+        <div class="block" id="programs">
+            <img class="block_bg" src="assets/icon_code.png"></img>
+            <h3>Programs</h3>
+            <p>Some programs and games I've been working on.</p>
+            <button title="P3synth" onclick="window.open('https://github.com/vlcoo/P3synth', '_blank');" class="button_project" style="background-image: url(assets/proj_p3synth.png);"></button>
+            &nbsp;
             <button title="TailTrail" onclick="window.open('https://vlco-o.itch.io/tailtrail', '_blank');" class="button_project" style="background-image: url(assets/proj_tailtrail.png);"></button>
-            <p></p>
+            &nbsp;
+            <button title="Command line Game of Life" onclick="window.open('https://github.com/vlcoo/commandline-game-of-life', '_blank');" class="button_project" style="background-image: url(assets/proj_gol.png);"></button>
+            <p><a href="https://github.com/vlcoo">+ Github repos</a></p>
         </div>
         
         <br>
