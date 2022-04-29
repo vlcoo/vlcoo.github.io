@@ -2,12 +2,12 @@
 
 html {
     margin:    0 auto;
-    max-width: 900px;
+    max-width: 800px;
     font-family: 'Roboto Condensed';
 }
 
 body {
-    background-color: #f2f7f6;
+    background-color: #f2f2f2;
 }
 
 /*h1, h2, h3, h4, h5, h6{
@@ -21,7 +21,7 @@ h1 {
     text-align: center;
     color: #0000;
 /*     font-family: "Roboto Condensed"; */
-    -webkit-text-stroke: 2px #022e64;
+    -webkit-text-stroke: 2px #A30002;
 }
 
 h2 {
@@ -32,22 +32,21 @@ h2 {
 }
 
 h3 {
-    color: #022e64;
-/*     font-family: 'Josefin Sans'; */
+    color: white;
 }
 
 p, label {
-    color: black;
+    color: lightgray;
 /*     font-family: "Roboto Condensed"; */
 }
 
 a {
-    color: #022e64;
+    color: #2980B9;
 }
 
 div.block {
 /*     width: 95%; */
-    background-color: #dc965a;
+    background-color: #0A0A0A;
     padding-top: 0.2px;
     padding-right: 20px;
     padding-bottom: 5px;
@@ -73,30 +72,38 @@ img.block_bg {
     position: absolute;
     top: -28px;
     right: -24px;
-    opacity: .3;
+    opacity: .15;
     width: 128px;
     height: 128px;
-    transform: rotate(30deg);
+    transform: rotate(20deg);
 }
 
 button {
+    font-size: 14px;
     background-color: black;
-    border-color: #ed254e;
+    border-color: #A30002;
     color: white;
     padding: 5px;
     border-radius: 5px;
-/*     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4), 0 1.5px 5px 0 rgba(0, 0, 0, 0.4); */
+    transform: scale(1);
     transition-duration: 0.2s;
+    font-family: "Roboto Condensed";
+}
+
+button.noticeme {
+    font-size: 20px;
+    background-color: #4ede52;
+    color: black;
+    font-weight: bold;
 }
 
 button:hover {
-    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.4), 0 4px 12px 0 rgba(0, 0, 0, 0.4);
+    transform: scale(1.2);
     transition-duration: 0.2s;
 }
 
 button:disabled {
     filter: brightness(40%);
-    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);
     border-color: grey;
 }
 
@@ -110,7 +117,16 @@ button.button_project {
 
 img {
     max-width: 480px;
-    max-width: 480px;
+    max-height: 480px;
+}
+
+img.screenshot {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 img.icon {
@@ -128,7 +144,7 @@ img.icon_header {
 
 input, textarea {
     background-color: black;
-    border-color: #ed254e;
+    border-color: #A30002;
     color: white;
     padding: 5px;
     border-radius: 5px;
@@ -141,4 +157,18 @@ textarea {
 select {
     height: 2em;
     font-size: 12px;
+}
+
+#p5_loading {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#p5_loading:before {
+    content: "Demo ";
+}
+
+#p5_loading:after {
+    content: " if it takes too long, something might be broken.";
+    font-size: 18px;
 }
