@@ -65,10 +65,36 @@ div.block_inline {
     height: 100%;
 }
 
+div.block_inline_left {
+    float: left;
+}
+div.block_inline_right {
+    float: right;
+}
+
 div.block_container {
     /* overflow: hidden; */
     /* padding: 24px; */
     height: 480px;
+}
+
+@media (max-width: 700px) {
+    div.block_inline {
+        width: initial;
+        height: initial;
+    }
+
+    div.block_inline_left, div.block_inline_right {
+        float: none;
+    }
+
+    div.block_inline:not(:last-child) {
+        margin-bottom: 18px;
+    }
+
+    div.block_container {
+        height: initial;
+    }
 }
 
 table.proj_container {
