@@ -2,7 +2,7 @@
 
 html {
     margin:    0 auto;
-    max-width: 800px;
+    max-width: 900px;
     font-family: 'Roboto Condensed';
 }
 
@@ -21,7 +21,7 @@ h1 {
     text-align: center;
     color: #0000;
 /*     font-family: "Roboto Condensed"; */
-    -webkit-text-stroke: 2px #A30002;
+    -webkit-text-stroke: 3px #A30002;
 }
 
 h2 {
@@ -58,6 +58,21 @@ div.block {
 /*     border-color: grey; */
     position: relative;
     overflow: hidden;
+}
+
+div.block_inline {
+    width: 44%;
+    height: 100%;
+}
+
+div.block_container {
+    /* overflow: hidden; */
+    /* padding: 24px; */
+    height: 480px;
+}
+
+table.proj_container {
+    border-spacing: 6px;
 }
 
 div.popup {

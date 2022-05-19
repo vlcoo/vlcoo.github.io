@@ -24,9 +24,11 @@
                 var h = location.hash
                 if(h == "#social") {
                     document.getElementById("welcome").hidden = true;
-                    document.getElementById("scripts").hidden = true;
-                    document.getElementById("programs").hidden = true;
+                    document.getElementById("projects").hidden = true;
                     document.getElementById("gohome").hidden = false;
+                    for (var elem of document.getElementsByTagName("br")) {
+                        elem.hidden = true;
+                    }
                 }
             }
         </script>
@@ -51,30 +53,51 @@
         
         <br>
         
-        <div class="block" id="scripts">
-            <img class="block_bg" src="assets/icon_gamepad.png"></img>
-            <h3>Interactive tools</h3>
-            <p>These all run on Python - maybe I'm obsessed with this language.</p>
-            <button title="Text to Discord emote" onclick="location.href = 'scripts/ttd.html';" class="button_project" style="background-image: url(assets/proj_ttd.png);"></button>
-            &nbsp;
-            <button title="Troll spoiler generator" onclick="location.href = 'scripts/tsg.html';" class="button_project" style="background-image: url(assets/proj_tsg.png);"></button>
-            &nbsp;
-            <button title="Translate mixer" onclick="location.href = 'scripts/gtm.html';" class="button_project" style="background-image: url(assets/proj_gtm.png);"></button>
-            <p></p>
-        </div>
-        
-        <br>
-        
-        <div class="block" id="programs">
-            <img class="block_bg" src="assets/icon_code.png"></img>
-            <h3>Programs</h3>
-            <p>Download or run em in your browser!</p>
-            <button title="P3synth" onclick="location.href = 'p3synth.html';" class="button_project" style="background-image: url(assets/proj_p3synth.png);"></button>
-            &nbsp;
-            <button title="TailTrail" onclick="window.open('https://vlco-o.itch.io/tailtrail', '_blank');" class="button_project" style="background-image: url(assets/proj_tailtrail.png);"></button>
-            &nbsp;
-            <button title="Command line Game of Life" onclick="window.open('https://github.com/vlcoo/commandline-game-of-life', '_blank');" class="button_project" style="background-image: url(assets/proj_gol.png);"></button>
-            <p><a href="https://github.com/vlcoo">See more GitHub repos</a></p>
+        <div class="block_container" id="projects">
+            <div class="block block_inline" style="float: left;" id="scripts">
+                <img class="block_bg" src="assets/icon_gamepad.png"></img>
+                <h3>Interactive tools</h3>
+                <p>These all run on Python - maybe I'm obsessed with this language.</p>
+                <table class="proj_container">
+                    <tr>
+                        <td><button title="Text to Discord emote" onclick="location.href = 'scripts/ttd.html';" class="button_project" style="background-image: url(assets/proj_ttd.png);"></button></td>
+                        <td><p>Text to Discord emote</p></td>
+                    </tr>
+                    <tr>
+                        <td><button title="Troll spoiler generator" onclick="location.href = 'scripts/tsg.html';" class="button_project" style="background-image: url(assets/proj_tsg.png);"></button></td>
+                        <td><p>Every-letter spoilerer</p></td>
+                    </tr>
+                    <tr>
+                        <td><button title="Translate mixer" onclick="location.href = 'scripts/gtm.html';" class="button_project" style="background-image: url(assets/proj_gtm.png);"></button></td>
+                        <td><p>Google translate mixer</p></td>
+                    </tr>
+                </table>
+                <p><a href="https://github.com/vlcoo">See more GitHub repos</a></p>
+            </div>
+            
+            <div class="block block_inline" style="float: right; overflow: hidden;" id="programs">
+                <img class="block_bg" src="assets/icon_code.png"></img>
+                <h3>Programs</h3>
+                <p>Download or run em in your browser!</p>
+                <table class="proj_container">
+                    <tr>
+                        <td><button title="P3synth" onclick="location.href = 'p3synth.html';" class="button_project" style="background-image: url(assets/proj_p3synth.png); image-rendering: -moz-crisp-edges;"></button></td>
+                        <td><p>MIDI synthesizer and visualizer</p></td>
+                    </tr>
+                    <tr>
+                        <td><button title="PokéjsDex" onclick="location.href = 'PokejsDex';" class="button_project" style="background-image: url(assets/proj_pokejsdex.png); image-rendering: -moz-crisp-edges;"></button></td>
+                        <td><p>Online Gen 5-styled Pokédex</p></td>
+                    </tr>
+                    <tr>
+                        <td><button title="TailTrail" onclick="window.open('https://vlco-o.itch.io/tailtrail', '_blank');" class="button_project" style="background-image: url(assets/proj_tailtrail.png);"></button></td>
+                        <td><p>Simple arcade style game</p></td>
+                    </tr>
+                    <tr>
+                        <td><button title="PYTPMV" onclick="window.open('https://github.com/vlcoo/PYTPMV', '_blank');" class="button_project" style="background-image: url(assets/unk.webp);"></button></td>
+                        <td><p>Automatic YTP Music Video creator</p></td>
+                    </tr>
+                </table>
+            </div>
         </div>
         
         <br>
