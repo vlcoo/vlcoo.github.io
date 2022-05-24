@@ -1,9 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,700&family=Roboto+Condensed:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
+@keyframes scaleIn {
+    0% {
+        transform: scale(96%);
+    }
+    100% {
+        transform: scale(100%);
+    }
+}
+
 html {
     margin:    0 auto;
     max-width: 900px;
     font-family: 'Roboto Condensed';
+    animation: 0.2s ease-out 0s 1 scaleIn;
 }
 
 body {
@@ -16,7 +26,7 @@ body {
 }*/
 
 h1 {
-    margin-bottom: 0px;
+    margin: 0px;
     font-size: 54px;
     text-align: center;
     color: #0000;
@@ -35,9 +45,14 @@ h3 {
     color: white;
 }
 
-p, label {
+p, label, span {
     color: lightgray;
 /*     font-family: "Roboto Condensed"; */
+}
+
+span {
+    vertical-align: middle;
+    margin: 0;
 }
 
 a {
@@ -60,9 +75,20 @@ div.block {
     overflow: hidden;
 }
 
+div.miniblock {
+    /* float: right; */
+    margin-left: auto;
+    margin-right: 0;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    vertical-align: middle;
+}
+
 div.block_inline {
     width: 44%;
     height: 100%;
+    margin-bottom: 18px;
+    margin-top: 18px;
 }
 
 div.block_inline_left {
@@ -73,9 +99,13 @@ div.block_inline_right {
 }
 
 div.block_container {
-    /* overflow: hidden; */
-    /* padding: 24px; */
-    height: 480px;
+    height: 380px;
+}
+
+div.block_header {
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
 }
 
 @media (max-width: 700px) {
@@ -94,6 +124,14 @@ div.block_container {
 
     div.block_container {
         height: initial;
+    }
+
+    div.block_header {
+        flex-direction: column;
+    }
+
+    div.miniblock {
+        margin: 0 auto;
     }
 }
 
@@ -125,7 +163,8 @@ button {
     border-color: #A30002;
     color: white;
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 8px;
+    border-width: 3px;
     transform: scale(1);
     transition-duration: 0.2s;
     font-family: "Roboto Condensed";
@@ -188,7 +227,9 @@ input, textarea {
     border-color: #A30002;
     color: white;
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 8px;
+    border-width: 2px;
+    font-family: monospace;
 }
 
 textarea {
