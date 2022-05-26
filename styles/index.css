@@ -245,12 +245,3 @@ select {
     font-size: 24px;
     font-weight: bold;
 }
-
-#p5_loading:before {
-    content: "Demo ";
-}
-
-#p5_loading:after {
-    content: " if it takes too long, something might be broken.";
-    font-size: 18px;
-}
