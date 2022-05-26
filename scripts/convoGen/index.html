@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>vlco_o discord message generator</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/styles/index.css" type="text/css"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="icon" href="/assets/favicon_index.ico"/>
+        
+        <script>
+            function clipboard_copy(text, msg) {
+                navigator.clipboard.writeText(text).then(function() {alert("Copied " + msg + " to clipboard.");}, function(err) {alert("Could not copy text cause: ", err);});
+            }
+        </script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js"></script>
+        <script src="elementMessage.js"></script>
+        <script src="convoGen.js"></script>
+    </head>
+    
+    
+    <body> 
+        <h1>vlcoo.net</h1>
+        <h2><a href="/" >Home</a> | Discord message generator</h2>
+
+        <div class="block" id="main">
+            <h3>Create fake Discord conversations interactively!</h3>
+            <noscript>
+                <p><b>sorry... someone disabled javascript or it's unsupported on your device. this website will not work for you!</b></p>
+                <img class="block_bg" src="/assets/icon_error.png"></img>
+            </noscript>
+        </div>
+    </body>
+</html> 
