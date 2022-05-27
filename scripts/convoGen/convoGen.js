@@ -1,9 +1,5 @@
-let cnv
-let colors
-let fonts
-let pfps
-let img_pfp_mask
-let msg
+let msg_list
+let dt_today;
 
 const AuthorTypes = Object.freeze({
     USER: 0,
@@ -11,66 +7,36 @@ const AuthorTypes = Object.freeze({
     SYSTEM: 2,
 })
 
-function preload() {
-    setup_fonts()
-    setup_images()
-}
-
 function setup() {
-    setup_colors()
-    setup_canvas()
+    dt_today = new Date()
 
-    textFont(fonts[0])
-    textSize(16)
-    imageMode(CENTER)
-
-    msg = new EMessage()
+    msg_list = new MessageList();
+    msg_list.add(new EMessage())
 }
 
-function draw() {
-    background(colors["bg_dark"])
-    
-    msg.on_draw(32)
+function all_done() {
+    select('#bg').style("border-radius", '0px')
+    html2canvas(bg).then(function(canvas) {
+        saveCanvas(canvas, 'fakeConvo', 'png')
+        select('#bg').style("border-radius", '4px')
+    })
 }
 
-function allDone() {
-    saveCanvas(cnv, 'fakeConversation', 'png')
-}
-
-function setup_colors() {
-    colors = {
-        "bg_light": color(255, 255, 255),
-        "bg_dark": color(54, 57, 63),
-        "maintext_light": color(220, 221, 222),
-        "maintext_dark": color(46, 51, 56),
-        "dimtext_light": color(124, 127, 131),
-        "dimtext_dark": color(151, 157, 164),
+function date2text(date, absolute = false) {
+    if (absolute) {
+        return date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear()
     }
-}
 
-function setup_fonts() {
-    fonts = [
-        loadFont("/assets/whitneymedium.otf"),
-        loadFont("/assets/whitneybold.otf"),
-    ]
-}
-
-function setup_images() {
-    pfps = {
-        "boto_o": loadImage("/assets/boto_o.png"),
+    else {
+        s = ""
+        day = date.getDate()
+        today = new Date()
+        today = today.getDate()
+        if (today == day) 
+            s += "Today at " + date.getHours() + ":" + date.getMinutes().toString().padStart(2, '0')
+        else if (today == day + 1) 
+            s += "Yesterday at " + date.getHours() + ":" + date.getMinutes().toString().padStart(2, '0')
+        else s = date2text(date, false)
+        return s
     }
-    img_pfp_mask = loadImage("/assets/pfp_mask.png")
-}
-
-function setup_canvas() {
-    cnv = createCanvas(724, 420)
-    cnv.parent("main")
-    cnv.style('margin-left', 'auto')
-    cnv.style('margin-right', 'auto')
-    cnv.style('display', 'block')
-    cnv.style('margin-bottom', '18px')
-    cnv.style('max-width', '100%')
-    cnv.style('object-fit', 'contain')
-    cnv.style('box-shadow', '0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4)')
-    cnv.style('border-radius', '10px')
 }
