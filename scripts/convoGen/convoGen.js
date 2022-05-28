@@ -1,5 +1,7 @@
 let msg_list
-let dt_today;
+let dt_today
+let c_menu
+let authors
 
 const AuthorTypes = Object.freeze({
     USER: 0,
@@ -7,11 +9,25 @@ const AuthorTypes = Object.freeze({
     SYSTEM: 2,
 })
 
+const MediaTypes = Object.freeze({
+    EMPTY: 0,
+    IMAGE: 1,
+})
+
 function setup() {
+    noCanvas()
     dt_today = new Date()
+    c_menu = new EditMenu()
+    authors = [
+        new EAuthor(),
+    ]
 
     msg_list = new MessageList();
     msg_list.add(new EMessage())
+}
+
+function show_edit_menu(msg_id) {
+    c_menu.toggle(msg_id)
 }
 
 function all_done() {
@@ -24,7 +40,9 @@ function all_done() {
 
 function date2text(date, absolute = false) {
     if (absolute) {
-        return date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear()
+        return date.getDate().toString().padStart(2, '0') + "/"
+        + date.getMonth().toString().padStart(2, '0') + "/"
+        + date.getFullYear()
     }
 
     else {
@@ -36,7 +54,9 @@ function date2text(date, absolute = false) {
             s += "Today at " + date.getHours() + ":" + date.getMinutes().toString().padStart(2, '0')
         else if (today == day + 1) 
             s += "Yesterday at " + date.getHours() + ":" + date.getMinutes().toString().padStart(2, '0')
-        else s = date2text(date, false)
+        else if (today == day - 1) 
+            s += "Tomorrow at " + date.getHours() + ":" + date.getMinutes().toString().padStart(2, '0')
+        else s = date2text(date, true)
         return s
     }
 }
