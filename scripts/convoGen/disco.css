@@ -48,6 +48,11 @@ p, span {
     font-weight: lighter;
 }
 
+.message-middle {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
 div.bg {
     background-color: #36393f;
     border-radius: 4px;
@@ -79,15 +84,21 @@ img.pfp {
     object-fit: cover;
 }
 
+img.fixedsize {
+    max-height: 26px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
 div.context_menu {
     background-color: #202020;
     border-radius: 2px;
-    padding: 4px;
+    padding: 6px;
     z-index: 10;
 }
 
 button.context_button {
-    font-size: 12px;
+    font-size: 14px;
     background-color: #0000;
     border: 0;
     border-radius: 0px;
@@ -108,4 +119,14 @@ textarea.popup_textin {
     border-radius: 0px;
     color: black;
     background-color: white;
+    width: 256px;
+    height: 64px;
+}
+
+img.media_img {
+    max-width: 400px;
+    max-height: 200px;
+    margin-top: 4px;
+    border-radius: 2px;
+    display: block;
 }

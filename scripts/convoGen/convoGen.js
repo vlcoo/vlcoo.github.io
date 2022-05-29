@@ -14,6 +14,15 @@ const MediaTypes = Object.freeze({
     IMAGE: 1,
 })
 
+const SystemMsgTypes = Object.freeze({
+    PIN: 0,
+    CALL: 1,
+    NEWMEMBER: 2,
+    BOOST: 3,
+    DATE: 4,
+    UNREAD: 5,
+})
+
 function setup() {
     noCanvas()
     dt_today = new Date()
@@ -28,6 +37,10 @@ function setup() {
 
 function show_edit_menu(msg_id) {
     c_menu.toggle(msg_id)
+}
+
+function show_sysedit_menu(msg_id) {
+    c_menu.toggle(msg_id, true)
 }
 
 function all_done() {
