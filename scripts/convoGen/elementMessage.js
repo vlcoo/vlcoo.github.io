@@ -3,9 +3,10 @@ class EMessage {
         this.has_header = false
         this.id = 0
         this.author = authors[0]
-        this.content_text = "Default message. Click to see options..."
+        this.content_text = "*Default message*. **Click** to see options..."
         this.date = dt_today
         this.media = new EMedia(this)
+        this.is_edited = false
 
         this.dom_msg_header
         this.dom_author
@@ -44,7 +45,20 @@ class EMessage {
         // that's a lot of doms...
         this.dom_line = createDiv()
         this.dom_content = createDiv()
-        this.dom_message = createP(this.content_text)
+        this.dom_message = createP(this.content_text.replaceAll("\n", "<br>"))
+        this.dom_message.html(this.dom_message.html().replaceAll(
+            /\*{2}(?!\s)((?:(?!\*{2}).)*)(?<!\s)\*{2}/sg, '<b>$1</b>'
+        ).replaceAll(
+            /\*{1}(?!\s)((?:(?!\*{1}).)*)(?<!\s)\*{1}/sg, '<i>$1</i>'
+        ).replaceAll(
+            /\_{2}(?!\s)((?:(?!\_{2}).)*)(?<!\s)\_{2}/sg, '<u>$1</u>'
+        ).replaceAll(
+            /\~{2}(?!\s)((?:(?!\~{2}).)*)(?<!\s)\~{2}/sg, '<s>$1</s>'
+        ).replaceAll(
+            /\|{2}(?!\s)((?:(?!\|{2}).)*)(?<!\s)\|{2}/sg, 
+            "<span style='vertical-align: initial; background-color: #202225; color: #202225; border-radius: 2px;'>$1</span>"
+        ))
+        if (this.is_edited) createSpan("(edited)").parent(this.dom_message).class("timestamp minitext")
         
         this.dom_content.class("content")
         this.dom_message.class("message")

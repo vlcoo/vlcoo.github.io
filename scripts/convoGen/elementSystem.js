@@ -6,6 +6,8 @@ class ESystem {
             "Author": authors[0],
             "CallDuration": "2 hours",
             "CallMissed": false,
+            "Date": dt_today,
+            "IsUnread": false,
         }
     }
 
@@ -46,10 +48,10 @@ class ESystem {
                 else this.dom_msg_icon = createImg("/assets/icon_call.png")
                 let s_nB = createSpan(this.values["Author"].name)
                 s_nB.style("color", this.values["Author"].role_color)
-                let s = ""
-                if (this.values["CallDuration"] == -1) s = " started a call."
-                else s = " started a call that lasted " + this.values["CallDuration"] + "."
-                let s_dimC = createSpan(s)
+                let sA = ""
+                if (this.values["CallDuration"] == -1) sA = " started a call."
+                else sA = " started a call that lasted " + this.values["CallDuration"] + "."
+                let s_dimC = createSpan(sA)
                 s_dimC.style("color", color(124, 127, 131))
                 this.dom_content = createP()
                 s_nB.parent(this.dom_content)
@@ -58,6 +60,21 @@ class ESystem {
                 this.dom_msg_icon.parent(this.dom_line)
                 this.dom_content.class("message message-middle")
                 this.dom_content.parent(this.dom_line)
+                break;
+            
+            case SystemMsgTypes.SEPARATOR:
+                this.dom_line = createDiv()
+                this.dom_line.class("line line-first")
+                this.dom_line.parent(bg)
+                let dom_hline = createP()
+                let u = this.values["IsUnread"]
+                dom_hline.class("hline_bg" + (u ? " red_hili" : ""))
+                dom_hline.parent(this.dom_line)
+                this.dom_content = createSpan(date2text(this.values["Date"], true, true))
+                this.dom_content.class("message-middle separator")
+                if (u) this.dom_content.style("color", color(237, 66, 69))
+                else this.dom_content.style("color", color(124, 127, 131))
+                this.dom_content.parent(dom_hline)
                 break;
         }
 

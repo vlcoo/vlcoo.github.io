@@ -12,15 +12,14 @@ const AuthorTypes = Object.freeze({
 const MediaTypes = Object.freeze({
     EMPTY: 0,
     IMAGE: 1,
+    VIDEO: 2,
+    EMBED: 3,
 })
 
 const SystemMsgTypes = Object.freeze({
     PIN: 0,
     CALL: 1,
-    NEWMEMBER: 2,
-    BOOST: 3,
-    DATE: 4,
-    UNREAD: 5,
+    SEPARATOR: 2,
 })
 
 function setup() {
@@ -51,11 +50,16 @@ function all_done() {
     })
 }
 
-function date2text(date, absolute = false) {
+function date2text(date, absolute = false, wordy = false) {
     if (absolute) {
-        return date.getDate().toString().padStart(2, '0') + "/"
-        + date.getMonth().toString().padStart(2, '0') + "/"
-        + date.getFullYear()
+        if (wordy)
+            return date.getDate().toString().padStart(2, '0') + " "
+            + date.toLocaleString('default', { month: 'long' }) + " "
+            + date.getFullYear()
+        else
+            return date.getDate().toString().padStart(2, '0') + "/"
+            + date.getMonth().toString().padStart(2, '0') + "/"
+            + date.getFullYear()
     }
 
     else {

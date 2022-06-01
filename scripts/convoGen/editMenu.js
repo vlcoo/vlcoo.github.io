@@ -154,6 +154,8 @@ class EditMenu {
         c_menu.popup_sysmsg_edit = createSelect()
         c_menu.popup_sysmsg_edit.class("popup_select")
         c_menu.popup_sysmsg_edit.option("Pinned message")
+        c_menu.popup_sysmsg_edit.option("Call")
+        c_menu.popup_sysmsg_edit.option("Separator")
         c_menu.popup_sysmsg_edit.parent(c_menu.dom_menu_bg)
         c_menu.popup_sysmsg_edit.selected(c_menu.popup_sysmsg_edit.elt[curr_msg.type].value)
         c_menu.popup_sysmsg_edit.changed(c_menu.hide_sysmsg_edit)
@@ -165,12 +167,13 @@ class EditMenu {
     }
 
     hide_sysmsg_edit() {
-        msg_list.msgs[c_menu.curr_id].type = c_menu.popup_media_edit.elt.selectedIndex
+        msg_list.msgs[c_menu.curr_id].type = c_menu.popup_sysmsg_edit.elt.selectedIndex
         c_menu.hide()
     }
 
     show_sysmsg_val() {
-        let type = msg_list.msgs[c_menu.curr_id].type
+        let msg = msg_list.msgs[c_menu.curr_id]
+        let no_author = false
         if (!c_menu.showing || c_menu.curr_id > msg_list.nMsgs) return
         c_menu.dom_menu_bg.remove()
 
@@ -179,7 +182,7 @@ class EditMenu {
         c_menu.dom_menu_bg.parent(bg)
         c_menu.dom_menu_bg.position(c_menu.x, c_menu.y, 'fixed')
 
-        switch(type) {
+        switch(msg.type) {
             case SystemMsgTypes.PIN:
                 c_menu.popup_author_preset = createSelect()
                 c_menu.popup_author_preset.style("display", "block")
@@ -193,25 +196,77 @@ class EditMenu {
                 c_menu.popup_author_preset.style("display", "inline")
                 c_menu.popup_author_preset.parent(c_menu.dom_menu_bg)
                 c_menu.popup_author_preset.selected(c_menu.popup_author_preset.elt[authors.indexOf(msg_list.msgs[c_menu.curr_id].values["Author"])].value)
+                createElement("br").parent(c_menu.dom_menu_bg)
+                break;
+            
+            case SystemMsgTypes.CALL:
+                c_menu.popup_author_preset = createSelect()
+                c_menu.popup_author_preset.style("display", "block")
+                c_menu.popup_author_preset.class("popup_select")
+                var i = 0
+                for (var a of authors) {
+                    c_menu.popup_author_preset.option(i + " - " + a.name)
+                    i++
+                }
+                createSpan("Who called? ").parent(c_menu.dom_menu_bg)
+                c_menu.popup_author_preset.style("display", "inline")
+                c_menu.popup_author_preset.parent(c_menu.dom_menu_bg)
+                c_menu.popup_author_preset.selected(c_menu.popup_author_preset.elt[authors.indexOf(msg_list.msgs[c_menu.curr_id].values["Author"])].value)
+                c_menu.popup_call_dur = createInput(msg.values["CallDuration"] == -1 ? "" : msg.values["CallDuration"])
+                c_menu.popup_call_dur.class("popup_textin dispblock")
+                c_menu.popup_call_dur.parent(c_menu.dom_menu_bg)
+                c_menu.popup_call_dur.attribute("placeholder", "Call duration")
+                break;
+            
+            case SystemMsgTypes.SEPARATOR:
+                c_menu.popup_author_preset = undefined
+                c_menu.popup_sep_date = createElement("input")
+                c_menu.popup_sep_date.attribute("type", "date")
+                c_menu.popup_sep_date.elt.valueAsDate = msg.values["Date"]
+                c_menu.popup_sep_date.class("popup_timedate")
+                c_menu.popup_sep_date.parent(c_menu.dom_menu_bg)
+                c_menu.popup_sep_hili = createCheckbox("Highlight")
+                c_menu.popup_sep_hili.parent(c_menu.dom_menu_bg)
+                c_menu.popup_sep_hili.checked(msg.values["IsUnread"])
+                c_menu.popup_sep_hili.style("display", "inline")
+                createElement("br").parent(c_menu.dom_menu_bg)
+                no_author = true
                 break;
         }
 
-        createElement("br").parent(c_menu.dom_menu_bg)
         c_menu.popup_done = createButton("✅ Done")
         c_menu.popup_done.style("display", "inline")
         c_menu.popup_done.class("context_button")
         c_menu.popup_done.parent(c_menu.dom_menu_bg)
         c_menu.popup_done.mousePressed(c_menu.hide_sysmsg_val)
         
-        c_menu.popup_new_preset = createButton("✳️ New author...")
-        c_menu.popup_new_preset.style("display", "inline")
-        c_menu.popup_new_preset.class("context_button")
-        c_menu.popup_new_preset.parent(c_menu.dom_menu_bg)
-        c_menu.popup_new_preset.mousePressed(c_menu.show_author_edit)
+        if (!no_author) {
+            c_menu.popup_new_preset = createButton("✳️ New author...")
+            c_menu.popup_new_preset.style("display", "inline")
+            c_menu.popup_new_preset.class("context_button")
+            c_menu.popup_new_preset.parent(c_menu.dom_menu_bg)
+            c_menu.popup_new_preset.mousePressed(c_menu.show_author_edit)
+        }
     }
 
     hide_sysmsg_val() {
-        msg_list.msgs[c_menu.curr_id].values["Author"] = authors[c_menu.popup_author_preset.elt.selectedIndex]
+        let msg = msg_list.msgs[c_menu.curr_id]
+        if (c_menu.popup_author_preset)
+            msg.values["Author"] = authors[c_menu.popup_author_preset.elt.selectedIndex]
+
+        switch (msg.type) {
+            case SystemMsgTypes.CALL:
+                if (c_menu.popup_call_dur.value() === "") msg.values["CallDuration"] = -1
+                else msg.values["CallDuration"] = c_menu.popup_call_dur.value()
+                print(c_menu.popup_call_dur.value())
+                break
+            
+            case SystemMsgTypes.SEPARATOR:
+                msg.values["Date"] = c_menu.popup_sep_date.elt.valueAsDate
+                msg.values["IsUnread"] = c_menu.popup_sep_hili.checked()
+                break
+        }
+
         c_menu.hide()
     }
 
@@ -227,6 +282,10 @@ class EditMenu {
         c_menu.popup_msg_edit.class("popup_textin")
         c_menu.popup_msg_edit.id("popup_msg_edit")
         c_menu.popup_msg_edit.parent(c_menu.dom_menu_bg)
+        c_menu.popup_msg_edit.attribute("placeholder", "Message (supports formatting)")
+        c_menu.popup_msg_edited = createCheckbox("Is edited")
+        c_menu.popup_msg_edited.parent(c_menu.dom_menu_bg)
+        c_menu.popup_msg_edited.checked(msg_list.msgs[c_menu.curr_id].is_edited)
         
         c_menu.popup_done = createButton("✅ Done")
         c_menu.popup_done.class("context_button")
@@ -236,6 +295,7 @@ class EditMenu {
 
     hide_msg_edit() {
         msg_list.msgs[c_menu.curr_id].content_text = c_menu.popup_msg_edit.value()
+        msg_list.msgs[c_menu.curr_id].is_edited = c_menu.popup_msg_edited.checked()
         c_menu.hide()
     }
 
@@ -376,6 +436,8 @@ class EditMenu {
         c_menu.popup_media_edit.class("popup_select")
         c_menu.popup_media_edit.option("No attachment")
         c_menu.popup_media_edit.option("Picture")
+        c_menu.popup_media_edit.option("Video")
+        c_menu.popup_media_edit.option("Embed")
         c_menu.popup_media_edit.parent(c_menu.dom_menu_bg)
         c_menu.popup_media_edit.selected(c_menu.popup_media_edit.elt[curr_msg.media.type].value)
         c_menu.popup_media_edit.changed(c_menu.hide_media_edit)
@@ -396,7 +458,7 @@ class EditMenu {
     }
 
     show_media_val() {
-        let type = msg_list.msgs[c_menu.curr_id].media.type
+        let media = msg_list.msgs[c_menu.curr_id].media
         if (!c_menu.showing || c_menu.curr_id > msg_list.nMsgs) return
         c_menu.dom_menu_bg.remove()
 
@@ -405,7 +467,7 @@ class EditMenu {
         c_menu.dom_menu_bg.parent(bg)
         c_menu.dom_menu_bg.position(c_menu.x, c_menu.y, 'fixed')
 
-        switch(type) {
+        switch(media.type) {
             case MediaTypes.EMPTY:
                 let p = createP("No attachment! Try choosing<br>another media type.")
                 p.style("fontSize", "12px")
@@ -419,6 +481,60 @@ class EditMenu {
                 c_menu.popup_img_upload.parent(c_menu.dom_menu_bg)
                 createElement("br").parent(c_menu.dom_menu_bg)
                 break;
+            
+            case MediaTypes.VIDEO:
+                c_menu.popup_vid_upload = createFileInput(c_menu.set_temp_upload)
+                c_menu.popup_vid_upload.class("popup_filein")
+                createSpan("Attached pic: ").parent(c_menu.dom_menu_bg)
+                c_menu.popup_vid_upload.parent(c_menu.dom_menu_bg)
+                createElement("br").parent(c_menu.dom_menu_bg)
+                c_menu.popup_vid_t = createInput(media.values["VidTitle"])
+                c_menu.popup_vid_t.class("popup_textin dispblock")
+                c_menu.popup_vid_t.parent(c_menu.dom_menu_bg)
+                c_menu.popup_vid_t.attribute("placeholder", "Filename")
+                c_menu.popup_vid_st = createInput(media.values["VidSubtitle"])
+                c_menu.popup_vid_st.class("popup_textin dispblock")
+                c_menu.popup_vid_st.parent(c_menu.dom_menu_bg)
+                c_menu.popup_vid_st.attribute("placeholder", "Filesize")
+                break;
+            
+            case MediaTypes.EMBED:
+                c_menu.popup_embed_usethumb = createCheckbox("Use thumbnail").parent(c_menu.dom_menu_bg)
+                c_menu.popup_embed_usethumb.checked(media.values["PicURL"] != -1)
+                c_menu.popup_img_upload = createFileInput(c_menu.set_temp_upload)
+                c_menu.popup_img_upload.class("popup_filein dispblock")
+                c_menu.popup_img_upload.parent(c_menu.dom_menu_bg)
+                c_menu.popup_embed_c = createColorPicker(media.values["EmbedColor"])
+                c_menu.popup_embed_c.parent(c_menu.dom_menu_bg)
+                c_menu.popup_embed_t = createInput(media.values["EmbedTitle"])
+                c_menu.popup_embed_t.class("popup_textin dispblock")
+                c_menu.popup_embed_t.parent(c_menu.dom_menu_bg)
+                c_menu.popup_embed_t.attribute("placeholder", "Title")
+                c_menu.popup_embed_d = createElement("textarea", media.values["EmbedDesc"])
+                c_menu.popup_embed_d.class("popup_textin dispblock")
+                c_menu.popup_embed_d.parent(c_menu.dom_menu_bg)
+                c_menu.popup_embed_d.attribute("placeholder", "Description")
+                c_menu.popup_embed_stA = createInput(media.values["EmbedSubtA"])
+                c_menu.popup_embed_stA.class("popup_textin dispblock")
+                c_menu.popup_embed_stA.parent(c_menu.dom_menu_bg)
+                c_menu.popup_embed_stA.attribute("placeholder", "Subtitle A")
+                c_menu.popup_embed_sdA = createElement("textarea", media.values["EmbedSubdA"])
+                c_menu.popup_embed_sdA.class("popup_textin dispblock")
+                c_menu.popup_embed_sdA.parent(c_menu.dom_menu_bg)
+                c_menu.popup_embed_sdA.attribute("placeholder", "Subdescription A")
+                c_menu.popup_embed_stB = createInput(media.values["EmbedSubtB"])
+                c_menu.popup_embed_stB.class("popup_textin dispblock")
+                c_menu.popup_embed_stB.parent(c_menu.dom_menu_bg)
+                c_menu.popup_embed_stB.attribute("placeholder", "Subtitle B")
+                c_menu.popup_embed_sdB = createElement("textarea", media.values["EmbedSubdB"])
+                c_menu.popup_embed_sdB.class("popup_textin dispblock")
+                c_menu.popup_embed_sdB.parent(c_menu.dom_menu_bg)
+                c_menu.popup_embed_sdB.attribute("placeholder", "Subdescription B")
+                c_menu.popup_embed_f = createInput(media.values["EmbedFooter"])
+                c_menu.popup_embed_f.class("popup_textin dispblock")
+                c_menu.popup_embed_f.parent(c_menu.dom_menu_bg)
+                c_menu.popup_embed_f.attribute("placeholder", "Footer")
+                break
         }
 
         c_menu.popup_done = createButton("✅ Done")
@@ -428,14 +544,36 @@ class EditMenu {
     }
 
     hide_media_val() {
-        let type = msg_list.msgs[c_menu.curr_id].media.type
-        switch(type) {
+        let media = msg_list.msgs[c_menu.curr_id].media
+        switch(media.type) {
             case MediaTypes.EMPTY:
                 break;
             
             case MediaTypes.IMAGE:
                 if (c_menu.curr_uploaded)
-                    msg_list.msgs[c_menu.curr_id].media.values["PicURL"] = c_menu.curr_uploaded
+                    media.values["PicURL"] = c_menu.curr_uploaded
+                break;
+            
+            case MediaTypes.VIDEO:
+                if (c_menu.curr_uploaded)
+                    media.values["PicURL"] = c_menu.curr_uploaded
+                media.values["VidTitle"] = c_menu.popup_vid_t.value()
+                media.values["VidSubtitle"] = c_menu.popup_vid_st.value()
+                    break;
+            
+            case MediaTypes.EMBED:
+                if (c_menu.popup_embed_usethumb.checked()) {
+                    if (c_menu.curr_uploaded) media.values["PicURL"] = c_menu.curr_uploaded
+                }
+                else media.values["PicURL"] = -1
+                media.values["EmbedTitle"] = c_menu.popup_embed_t.value()
+                media.values["EmbedDesc"] = c_menu.popup_embed_d.value()
+                media.values["EmbedSubtA"] = c_menu.popup_embed_stA.value()
+                media.values["EmbedSubdescA"] = c_menu.popup_embed_sdA.value()
+                media.values["EmbedSubtB"] = c_menu.popup_embed_stB.value()
+                media.values["EmbedSubdescB"] = c_menu.popup_embed_sdB.value()
+                media.values["EmbedFooter"] = c_menu.popup_embed_f.value()
+                media.values["EmbedColor"] = c_menu.popup_embed_c.color()
                 break;
         }
         c_menu.hide()
