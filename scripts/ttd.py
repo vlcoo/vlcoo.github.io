@@ -20,9 +20,9 @@ def project(ev):
     for char in t_in.lower():
         if char in LIST_LETTERS:
             if (document["options_python_aalt"].checked and char == "a") or (document["options_python_balt"].checked and char == "b"):
-                t_out += ":%s: " % char
+                t_out += ":%s:​" % char
             else:
-                t_out += ":regional_indicator_%s: " % char
+                t_out += ":regional_indicator_%s:​" % char
         elif char in DICT_NUMBERS:
             t_out += DICT_NUMBERS[char]
         elif char == " ":
@@ -31,7 +31,7 @@ def project(ev):
             elif document["options_python_space"].value == "ignore":
                 continue
             else:
-                t_out += ":black_large_square: "
+                t_out += ":black_large_square:​"
         else:
             if document["options_python_symbols"].value == "keep":
                 t_out += char
