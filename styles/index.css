@@ -232,6 +232,12 @@ input, textarea {
     font-family: monospace;
 }
 
+#img_in {
+    font-size: 10px;
+    height: 36px;
+    background-color: #36393f;
+}
+
 textarea {
     font-family: monospace;
 }
