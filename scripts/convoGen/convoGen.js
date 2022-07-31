@@ -44,7 +44,7 @@ function show_sysedit_menu(msg_id) {
 
 function all_done() {
     select('#bg').style("border-radius", '0px')
-    html2canvas(bg).then(function(canvas) {
+    html2canvas(bg, {"scale": 2}).then(function(canvas) {
         saveCanvas(canvas, 'fakeConvo', 'png')
         select('#bg').style("border-radius", '4px')
     })
