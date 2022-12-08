@@ -72,7 +72,7 @@ function convert(width) {
     for (let i = 0; i < im.height; i++) {
         for (let j = 0; j < im.width; j++) {
             let p = im.get(j, i)
-            s += comp_col(p) + " "
+            s += comp_col(p) + ""
         }
         s += "\n"
     }
