@@ -16,13 +16,14 @@ def project(ev):
     LIST_LETTERS = list(map(chr, range(97, 123)))
 
     t_in = document["form_python_input"].value
+    l_separator = "​" if document["options_python_separator"].checked else " "
     t_out = ""
     for char in t_in.lower():
         if char in LIST_LETTERS:
             if (document["options_python_aalt"].checked and char == "a") or (document["options_python_balt"].checked and char == "b"):
-                t_out += ":%s:​" % char
+                t_out += (":%s:" % char) + l_separator
             else:
-                t_out += ":regional_indicator_%s:​" % char
+                t_out += (":regional_indicator_%s:" % char) + l_separator
         elif char in DICT_NUMBERS:
             t_out += DICT_NUMBERS[char]
         elif char == " ":
