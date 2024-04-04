@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,700&family=Roboto+Condensed:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 
 @keyframes scaleIn {
     0% {
@@ -12,7 +12,7 @@
 html {
     margin:    0 auto;
     max-width: 900px;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     animation: 0.2s ease-out 0s 1 scaleIn;
 }
 
@@ -20,25 +20,18 @@ body {
     background-color: #f2f2f2;
 }
 
-/*h1, h2, h3, h4, h5, h6{
-    margin-bottom:0px;
-    margin-top:0px;
-}*/
-
 h1 {
-    margin: 0px;
+    margin: 0;
     font-size: 54px;
     text-align: center;
-    color: #0000;
-/*     font-family: "Roboto Condensed"; */
     -webkit-text-stroke: 3px #A30002;
+    color: #0000;
 }
 
 h2 {
-    margin-top: 0px;
+    margin-top: 0;
     text-align: center;
     color: black;
-/*     font-family: "Roboto Condensed"; */
 }
 
 h3 {
@@ -47,7 +40,6 @@ h3 {
 
 p, label, span {
     color: lightgray;
-/*     font-family: "Roboto Condensed"; */
 }
 
 span {
@@ -62,10 +54,7 @@ a {
 div.block {
 /*     width: 95%; */
     background-color: #0A0A0A;
-    padding-top: 0.2px;
-    padding-right: 20px;
-    padding-bottom: 5px;
-    padding-left: 20px;
+    padding: 0.2px 20px 5px;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
 /*     border-style: solid; */
@@ -167,7 +156,6 @@ button {
     border-width: 3px;
     transform: scale(1);
     transition-duration: 0.2s;
-    font-family: "Roboto Condensed";
 }
 
 button.noticeme {
