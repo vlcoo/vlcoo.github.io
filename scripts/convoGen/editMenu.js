@@ -407,8 +407,8 @@ class EditMenu {
         c_menu.dom_menu_bg.parent(bg)
         c_menu.dom_menu_bg.position(c_menu.x, c_menu.y, 'fixed')
         c_menu.popup_time_edit = createElement("input")
-        c_menu.popup_time_edit.attribute("type", "datetime-local")
-        c_menu.popup_time_edit.elt.valueAsDate = msg_list.msgs[c_menu.curr_id].date
+        c_menu.popup_time_edit.elt.type = "datetime-local"
+        c_menu.popup_time_edit.elt.value = msg_list.msgs[c_menu.curr_id].date.toISOString().substring(0, 16)
         c_menu.popup_time_edit.class("popup_timedate")
         c_menu.popup_time_edit.parent(c_menu.dom_menu_bg)
         

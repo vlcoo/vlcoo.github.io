@@ -21,11 +21,12 @@
             }
             
             async function verify() {
+                document.getElementById("not_human").disabled = true;
                 document.getElementById("icon_loading").style.display = "";
                 await new Promise(r => setTimeout(r, (Math.random() * 2000) + 1000));
                 document.getElementById("icon_loading").style.display = "none";
                 alert("Could not verify that user is non-human.");
-                alert("Please go back immediately.");
+                alert("This incident has been reported. Please go back immediately.");
                 location.href = "https://vlcoo.github.io";
             }
         </script>

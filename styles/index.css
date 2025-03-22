@@ -13,7 +13,6 @@ html {
     margin:    0 auto;
     max-width: 900px;
     font-family: 'Roboto Condensed', sans-serif;
-    animation: 0.2s ease-out 0s 1 scaleIn;
 }
 
 body {
@@ -62,6 +61,7 @@ div.block {
 /*     border-color: grey; */
     position: relative;
     overflow: hidden;
+    animation: 0.2s ease-out 0s 1 scaleIn;
 }
 
 div.miniblock {
