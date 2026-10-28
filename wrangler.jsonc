@@ -2,6 +2,7 @@
   "name": "mainpage",
   "compatibility_date": "2025-07-15",
   "assets": {
-    "directory": "."
+    "directory": ".",
+    "not_found_handling": "404-page"
   }
 }

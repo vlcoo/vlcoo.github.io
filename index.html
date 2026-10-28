@@ -8,10 +8,10 @@
         <meta property="og:type" content="website">
         <meta property="og:url" content="https://vlcoo.net/">
         <meta property="og:title" content="vlco_o main page">
-        <meta property="og:description" content="Just a little page with random coding projects, tools and more.">
+        <meta property="og:description" content="my projects">
         <meta property="og:image" content="https://vlcoo.net/assets/metatag_banner.png">
         <meta name="title" content="vlco_o main page">
-        <meta name="description" content="Just a little page with random coding projects, tools and more.">
+        <meta name="description" content="my projects">
         <meta property="twitter:card" content="summary">
         <meta property="twitter:image:src" content="https://vlcoo.net/assets/metatag_banner.png">
         
@@ -25,7 +25,7 @@
                         alert("Copied " + msg + " to clipboard.");
                     },
                     function(err) {
-                    alert("Could not copy text cause: ", err);
+                    alert("Could not copy text because: ", err);
                     }
                 );
             }
@@ -36,6 +36,7 @@
                     document.getElementById("welcome").hidden = true;
                     document.getElementById("projects").hidden = true;
                     document.getElementById("gohome").hidden = false;
+                    document.getElementById("repos-reminder").hidden = true;
                     for (var elem of document.getElementsByTagName("br")) {
                         elem.hidden = true;
                     }
@@ -51,20 +52,14 @@
             <div class="block miniblock">
                 <button title="Bluesky - @vlcoo.net" onclick="window.open('https://bsky.app/profile/vlcoo.net', '_blank');"><img class="icon" src="assets/icon_bluesky.png"></button>
                 &nbsp;
-                <button title="Discord - vlco_o" onclick="clipboard_copy('vlco_o', 'user ID');"><img class="icon" src="assets/icon_discord.png"></button>
-                &nbsp;
                 <button title="GitHub - vlcoo" onclick="window.open('https://github.com/vlcoo', '_blank');"><img class="icon" src="assets/icon_github.png"></button>
                 &nbsp;
-                <button title="Amino - vic" onclick="window.open('https://aminoapps.com/p/4rut5b', '_blank');"><img class="icon" src="assets/icon_amino.png"></button>
-                &nbsp;
-                <button title="itch.io - vlco-o" onclick="window.open('https://vlco-o.itch.io', '_blank');"><img class="icon" src="assets/icon_itchio.png"></button>
-                &nbsp;
-                <button title="YouTube - @vlco_o" onclick="window.open('https://www.youtube.com/channel/UC0F0M_9UKzS0cQraF-JM9Aw', '_blank');"><img class="icon" src="assets/icon_youtube.png"></button>
+                <button title="Twitch - vickstertrickter" onclick="window.open('https://twitch.tv/vickstertrickster0', '_blank');"><img class="icon" src="assets/icon_twitch.png"></button>
             </div>
         </div>
 
         <noscript>
-            <p style="color: black; text-align: center"><b>sorry... someone disabled javascript or it's unsupported on your device. this website will not work for you!</b></p>
+            <p style="color: black; text-align: center"><b>sorry... someone disabled javascript or it's unsupported on your device...</b></p>
         </noscript>
         
         <br>
